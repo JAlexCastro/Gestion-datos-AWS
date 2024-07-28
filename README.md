@@ -1,6 +1,6 @@
 Optimización de la Gestión y Procesamiento de Datos en BioTechInnovators Utilizando AWS y Habilidades en Ingeniería de Datos
 
-![Solucion](Imgs\SolucionBioTechInnovators.jpg)
+![Solucion](Imgs/SolucionBioTechInnovators.jpg)
 
 ## Desafíos Clave:
 
@@ -26,7 +26,7 @@ Optimización de la Gestión y Procesamiento de Datos en BioTechInnovators Utili
 2. Equipo Clínico: Acceso a resultados clínicos.
 3. Equipo de Calidad y Compliance: Acceso a protocolos y procedimientos.
 
-![Grupos](Imgs\Definicion_Grupos_Permisos_BioTech.jpeg)
+![Grupos](Imgs/Definicion_Grupos_Permisos_BioTech.jpeg)
 
 ## Estructura y Volumen de Información:
 
