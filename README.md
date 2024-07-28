@@ -30,7 +30,7 @@ Optimización de la Gestión y Procesamiento de Datos en BioTechInnovators Utili
 
 ## Estructura y Volumen de Información:
 
-![Carpetas](Imgs\Estructura_Carpetas_Bucket.jpeg)
+![Carpetas](Imgs/Estructura_Carpetas_Bucket.jpeg)
 
 1. Carpetas y Propósitos:
     - Datos de Investigación
