@@ -1,0 +1,115 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Crear políticas IAM con permisos para modificar y cargar objetos en rutas específicas 
+
+Parameters:
+  NombreBucket:
+    Description: Nombre del bucket S3
+    Type: String
+  NombreGrupoInvestigacion:
+    Description: Nombre del grupo para cargar en carpeta Investigacion
+    Type: String
+  NombreGrupoDatosClinicos:
+    Description: Nombre del grupo para cargar en carpeta DatosClinicos
+    Type: String
+  NombreGrupoProtocolosProcedimientos:
+    Description: Nombre del grupo para cargar en carpeta ProtocolosProcedimientos
+    Type: String
+  NombreGrupoLectura:
+    Description: Nombre del grupo para lectura total del bucket
+    Type: String
+
+Resources:
+  # Política para modificar y cargar objetos en la carpeta Investigación
+  PoliticaCargarInvestigacion:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub Politica_carga_Investigacion_${NombreBucket}
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:ListBucket
+              - s3:GetBucketLocation
+            Resource:
+              - !Sub arn:aws:s3:::${NombreBucket}
+          - Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:GetObjectVersion
+              - s3:PutObject
+            Resource:
+              - !Sub arn:aws:s3:::${NombreBucket}/Investigacion/*
+      Groups:
+        - !Ref NombreGrupoInvestigacion
+
+  # Política para modificar y cargar objetos en la carpeta Datos Clínicos
+  PoliticaCargarDatosClinicos:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub Politica_carga_DatosClinicos_${NombreBucket}
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:ListBucket
+              - s3:GetBucketLocation
+            Resource:
+              - !Sub arn:aws:s3:::${NombreBucket}
+          - Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:GetObjectVersion
+              - s3:PutObject
+            Resource:
+              - !Sub arn:aws:s3:::${NombreBucket}/DatosClinicos/*
+      Groups:
+        - !Ref NombreGrupoDatosClinicos
+
+  # Política para modificar y cargar objetos en la carpeta Protocolos y Procedimientos
+  PoliticaCargarProtocolos:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub Politica_carga_Protocolos_${NombreBucket}
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:ListBucket
+              - s3:GetBucketLocation
+            Resource:
+              - !Sub arn:aws:s3:::${NombreBucket}
+          - Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:GetObjectVersion
+              - s3:PutObject
+            Resource:
+              - !Sub arn:aws:s3:::${NombreBucket}/ProtocolosProcedimientos/*
+      Groups:
+        - !Ref NombreGrupoProtocolosProcedimientos
+        
+  # Politica para acceso de solo lectura al bucket S3
+  PoliticaSoloLectura:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub Politica_SoloLectura_${NombreBucket}
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:ListBucket
+              - s3:GetBucketLocation
+            Resource: 
+              - !Sub arn:aws:s3:::${NombreBucket}
+          - Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:GetObjectVersion
+            Resource: 
+              - !Sub arn:aws:s3:::${NombreBucket}/*
+      Groups:
+        - !Ref NombreGrupoLectura

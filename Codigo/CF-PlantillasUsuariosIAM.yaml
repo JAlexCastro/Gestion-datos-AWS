@@ -1,0 +1,118 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Crear usuarios IAM y asignarlos a grupos para BioTechInnovators.
+
+Parameters:
+  GrupoSoloLectura:
+    Description: Nombre del grupo para acceso de solo lectura.
+    Type: String
+    Default: GrupoSoloLectura
+  GrupoCargaInvestigacion:
+    Description: Nombre del grupo para carga y modificación en carpeta Investigación.
+    Type: String
+    Default: GrupoCargaInvestigacion
+  GrupoCargaDatosClinicos:
+    Description: Nombre del grupo para carga y modificación en carpeta Datos Clínicos.
+    Type: String
+    Default: GrupoCargaDatosClinicos
+  GrupoCargaProtocolos:
+    Description: Nombre del grupo para carga y modificación en carpeta Protocolos.
+    Type: String
+    Default: GrupoCargaProtocolos
+
+Resources:
+  # Usuarios IAM
+  UsuarioAnaGomez:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: AnaGomez
+      Groups:
+        - !Ref GrupoSoloLectura
+        - !Ref GrupoCargaInvestigacion
+
+  UsuarioJavierMartinez:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: JavierMartinez
+      Groups:
+        - !Ref GrupoSoloLectura
+        - !Ref GrupoCargaInvestigacion
+
+  UsuarioLauraPerez:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: LauraPerez
+      Groups:
+        - !Ref GrupoSoloLectura
+        - !Ref GrupoCargaInvestigacion
+
+  UsuarioCarlosRodriguez:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: CarlosRodriguez
+      Groups:
+        - !Ref GrupoSoloLectura
+        - !Ref GrupoCargaInvestigacion
+
+  UsuarioIsabelFernandez:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: IsabelFernandez
+      Groups:
+        - !Ref GrupoSoloLectura
+        - !Ref GrupoCargaDatosClinicos
+
+  UsuarioLuisRamirez:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: LuisRamirez
+      Groups:
+        - !Ref GrupoSoloLectura
+        - !Ref GrupoCargaDatosClinicos
+
+  UsuarioMariaLopez:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: MariaLopez
+      Groups:
+        - !Ref GrupoSoloLectura
+        - !Ref GrupoCargaDatosClinicos
+
+  UsuarioPedroSanchez:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: PedroSanchez
+      Groups:
+        - !Ref GrupoSoloLectura
+        - !Ref GrupoCargaDatosClinicos
+
+  UsuarioBeatrizMorales:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: BeatrizMorales
+      Groups:
+        - !Ref GrupoSoloLectura
+        - !Ref GrupoCargaProtocolos
+
+  UsuarioRicardoGomez:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: RicardoGomez
+      Groups:
+        - !Ref GrupoSoloLectura
+        - !Ref GrupoCargaProtocolos
+
+  UsuarioVeronicaSilva:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: VeronicaSilva
+      Groups:
+        - !Ref GrupoSoloLectura
+        - !Ref GrupoCargaProtocolos
+
+  UsuarioFernandoLopez:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: FernandoLopez
+      Groups:
+        - !Ref GrupoSoloLectura
+        - !Ref GrupoCargaProtocolos

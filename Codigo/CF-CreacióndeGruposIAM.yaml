@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Creación de grupos IAM que tendrán políticas específicas para un bucket S3.
+
+Parameters:
+  NombreBucket:
+    Description: Nombre del bucket S3
+    Type: String
+    
+Resources:
+  # Grupo para solo lectura
+  GrupoSoloLectura:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: !Sub GrupoSoloLectura_${NombreBucket}
+    Metadata:
+      Description: "Este grupo tiene los permisos de solo lectura para todo el bucket"
+
+  # Grupo para Carga y Modificación en la Carpeta Investigación
+  GrupoCargaInvestigacion:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: !Sub GP_Carga_Investigacion_${NombreBucket}
+    Metadata:
+      Description: "Este grupo tiene los permisos para cargar y modificar objetos en la carpeta Investigación"
+
+  # Grupo para Carga y Modificación en la Carpeta Datos Clínicos
+  GrupoCargaDatosClinicos:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: !Sub GP_Carga_DatosClinicos_${NombreBucket}
+    Metadata:
+      Description: "Este grupo tiene los permisos para cargar y modificar objetos en la carpeta Datos Clínicos"
+
+  # Grupo para Carga y Modificación en la Carpeta Protocolos y Procedimientos
+  GrupoCargaProtocolos:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: !Sub GP_Carga_Protocolos_${NombreBucket}
+    Metadata:
+      Description: "Este grupo tiene los permisos para cargar y modificar objetos en la carpeta Protocolos y Procedimientos"
